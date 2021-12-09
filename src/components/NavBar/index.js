@@ -1,39 +1,39 @@
 import React from "react";
-import { Button } from "../Button";
+import { RoutingBtn } from "../RoutingBtn";
 import { useLocation } from "react-router-dom";
 
-import { Nav, NavLogo, NavContainer, NavMenu, NavItem, NavItemRoute, NavBtn } from "./components";
+import { Nav, NavLogo, NavContainer, NavMenu, NavItemRoute, NavBtn } from "./components";
 const NavBar = () => {
 	const location = useLocation();
-
+	const navHeight = "80px";
 	return (
 		<>
-			<Nav transparent={location.pathname === "/" ? true : false}>
+			<Nav navHeight={navHeight} transparent={location.pathname === "/" ? true : false}>
 				<NavContainer>
-					<NavLogo to="/">Logo</NavLogo>
+					<NavLogo to="/">CyberExpert</NavLogo>
 
 					<NavMenu>
-						<NavItem>
-							<NavItemRoute current_path={location.pathname} to="/learn/topics">
+						<li style={{ height: navHeight }}>
+							<NavItemRoute current_path={location.pathname} to="/topics">
 								Learn
 							</NavItemRoute>
-						</NavItem>
-						<NavItem>
-							<NavItemRoute current_path={location.pathname} to="/develop/topics">
+						</li>
+						<li style={{ height: navHeight }}>
+							<NavItemRoute current_path={location.pathname} to="/dev">
 								Develop
 							</NavItemRoute>
-						</NavItem>
-						<NavItem>
-							<NavItemRoute current_path={location.pathname} to="/challenge/topics">
+						</li>
+						<li style={{ height: navHeight }}>
+							<NavItemRoute current_path={location.pathname} to="/challenges">
 								Challenge
 							</NavItemRoute>
-						</NavItem>
+						</li>
 					</NavMenu>
 
 					<NavBtn>
-						<Button to="/join_now" primary="true" dark="true">
+						<RoutingBtn to="/join_now" darkTheme={true}>
 							Join now
-						</Button>
+						</RoutingBtn>
 					</NavBtn>
 				</NavContainer>
 			</Nav>

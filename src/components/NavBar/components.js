@@ -3,8 +3,8 @@ import { Link as LinkR } from "react-router-dom";
 
 export const Nav = styled.nav`
 	background: ${({ transparent }) => (transparent ? "transparent" : "#141a24")};
-	height: 80px;
-	margin-bottom: -80px;
+	height: ${({ navHeight }) => navHeight};
+	margin-bottom: ${({ navHeight }) => `-${navHeight}`};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -21,11 +21,10 @@ export const Nav = styled.nav`
 export const NavContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
-	height: 80px;
+	height: ${({ navHeight }) => navHeight};
 	z-index: 1;
 	width: 100%;
-	padding: 0 24px;
-	max-width: 1600px;
+	max-width: 1200px;
 `;
 
 export const NavLogo = styled(LinkR)`
@@ -35,7 +34,6 @@ export const NavLogo = styled(LinkR)`
 	font-size: 1.5rem;
 	display: flex;
 	align-items: center;
-	margin-left: 24px;
 	font-weight: bold;
 	text-decoration: none;
 `;
@@ -46,16 +44,11 @@ export const NavMenu = styled.ul`
 	justify-content: center;
 	list-style: none;
 	text-align: center;
-	margin-right: -10px;
 	color: white;
 
 	@media screen and (max-width: 768px) {
 		display: none;
 	}
-`;
-
-export const NavItem = styled.li`
-	height: 80px;
 `;
 
 export const NavBtn = styled.div`

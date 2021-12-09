@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Video from "../../videos/video.mp4";
-import { Button } from "../Button";
+import { RoutingBtn } from "../RoutingBtn";
 import {
 	BannerContainer,
 	VideoBg,
@@ -10,7 +10,6 @@ import {
 	BannerContent,
 	ArrowForward,
 	ArrowRight,
-	BannerBtnWrapper,
 } from "./components";
 const Banner = () => {
 	var [hover, setHover] = useState(false);
@@ -26,18 +25,14 @@ const Banner = () => {
 			<BannerContent>
 				<BannerH>A hacking play ground</BannerH>
 				<BannerP>Join us to take your hacking skills to the next level</BannerP>
-				<BannerBtnWrapper>
-					<Button
-						to="/join_now"
-						onMouseEnter={onHover}
-						onMouseLeave={onHover}
-						fontBig="false"
-						primary="true"
-						dark="true"
-					>
-						Join now {hover ? <ArrowForward /> : <ArrowRight />}
-					</Button>
-				</BannerBtnWrapper>
+				<RoutingBtn
+					to="/join_now"
+					onMouseEnter={onHover}
+					onMouseLeave={onHover}
+					darkTheme={true}
+				>
+					Join now {hover ? <ArrowForward /> : <ArrowRight />}
+				</RoutingBtn>
 			</BannerContent>
 		</BannerContainer>
 	);

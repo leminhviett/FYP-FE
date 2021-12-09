@@ -5,9 +5,7 @@ export const BannerContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0 30px;
 	height: 100vh;
-	/* position: relative; */
 	z-index: 1;
 
 	:before {
@@ -80,13 +78,6 @@ export const BannerP = styled.p`
 	@media screen and (max-width: 480px) {
 		font-size: 18px;
 	}
-`;
-
-export const BannerBtnWrapper = styled.div`
-	margin-top: 32px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 `;
 
 export const ArrowForward = styled(MdArrowForward)`
