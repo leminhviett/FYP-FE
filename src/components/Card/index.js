@@ -2,6 +2,9 @@ import React from "react";
 import { Content, ContentImg } from "./components";
 import { RoutingBtn } from "../RoutingBtn";
 const Card = ({ name, desc, imgSrc, challenge_id }) => {
+
+	
+
 	return (
 		<Content>
 			<ContentImg src={imgSrc} alt="img"></ContentImg>

@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import NavBar from "./components/NavBar/";
-import ChallengePage from "./pages/ChallengePages";
+import ChallengesPage from "./pages/ChallengesPages";
 
 function App() {
 	return (
@@ -12,7 +12,7 @@ function App() {
 				<Route path="/" component={LandingPage} exact />
 				{/* <Route path="/topics" component={LearnPage} exact />
 				<Route path="/dev" component={DevelopPage} exact /> */}
-				<Route path="/challenges" component={ChallengePage} exact />
+				<Route path="/challenges" component={ChallengesPage} />
 			</Switch>
 		</Router>
 	);
