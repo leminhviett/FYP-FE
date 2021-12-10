@@ -31,7 +31,7 @@ const NavBar = () => {
 					</NavMenu>
 
 					<NavBtn>
-						<RoutingBtn to="/join_now" darkTheme={true}>
+						<RoutingBtn to="/joining/auth" darkTheme={true}>
 							Join now
 						</RoutingBtn>
 					</NavBtn>
