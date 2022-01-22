@@ -1,10 +1,11 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Register, Login } from "../components/Form/RegisterLogin";
 import NormalizeContainer from "../components/NormalizeContainer";
-import { Register, Login } from "../components/RegisterLogin";
+
 const JoinningPage = () => {
 	const { path } = useRouteMatch();
-
+	console.log(`${path}/auth`);
 	return (
 		<>
 			<NormalizeContainer>

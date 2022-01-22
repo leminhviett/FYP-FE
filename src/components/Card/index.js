@@ -1,10 +1,8 @@
 import React from "react";
 import { Content, ContentImg } from "./components";
 import { RoutingBtn } from "../RoutingBtn";
-const Card = ({ name, desc, imgSrc, challenge_id }) => {
 
-	
-
+const Card = ({ name, desc, imgSrc, path, card_action }) => {
 	return (
 		<Content>
 			<ContentImg src={imgSrc} alt="img"></ContentImg>
@@ -12,8 +10,8 @@ const Card = ({ name, desc, imgSrc, challenge_id }) => {
 			<>
 				<h3>{name}</h3>
 				<p>{desc}</p>
-				<RoutingBtn to={`/challenges/${challenge_id}`} primary="true" dark="true">
-					Hack
+				<RoutingBtn to={path} primary="true" dark="true" element={<p>Hello</p>}>
+					{card_action}
 				</RoutingBtn>
 			</>
 		</Content>

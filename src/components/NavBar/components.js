@@ -24,7 +24,7 @@ export const NavContainer = styled.div`
 	height: ${({ navHeight }) => navHeight};
 	z-index: 1;
 	width: 100%;
-	max-width: 1200px;
+	max-width: 1500px;
 `;
 
 export const NavLogo = styled(LinkR)`
@@ -72,9 +72,15 @@ export const NavItemRoute = styled(LinkR)`
 	transition: all 0.2s ease-in-out;
 
 	// set active link
-	background-color: ${(props) => (props.current_path.includes(props.to) ? "#01bf71" : "none")};
-	color: ${(props) => (props.current_path.includes(props.to) ? "#000" : "#fff")};
+	background-color: ${(props) => {
+		if (`/${props.current_path.split("/")[1]}` == props.to) return "#01bf71";
+		return "none";
+	}};
 
+	color: ${(props) => {
+		if (`/${props.current_path.split("/")[1]}` == props.to) return "#000";
+		return "#fff";
+	}};
 	&:hover {
 		background-color: #1cd68a;
 		color: #000;

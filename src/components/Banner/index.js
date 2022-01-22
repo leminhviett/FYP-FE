@@ -29,7 +29,7 @@ const Banner = () => {
 					to="/join_now"
 					onMouseEnter={onHover}
 					onMouseLeave={onHover}
-					darkTheme={true}
+					darktheme={true}
 				>
 					Join now {hover ? <ArrowForward /> : <ArrowRight />}
 				</RoutingBtn>

@@ -9,6 +9,7 @@ const NormalizeContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	color: white;
+	width: 100%;
 `;
 
 export default NormalizeContainer;

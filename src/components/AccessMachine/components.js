@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
-export const FormContainer = styled.div`
+export const OuterContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	z-index: 1;
+`;
+
+export const InnerContainer = styled.div`
 	padding: 10px;
 	width: 600px;
 	background-color: #2a364a;
+	color: white;
 	max-width: 1000px;
 	position: absolute;
 	top: 50%;
@@ -14,19 +23,6 @@ export const FormContainer = styled.div`
 	align-items: center;
 	flex-direction: column;
 	border-radius: 5px;
-`;
-
-export const Input = styled.input`
-	width: 80%;
-	padding: 15px;
-	margin: 15px 0 22px 0;
-	display: inline-block;
-	border-radius: 5px;
-	border: none;
-	background: #f1f1f1;
-
-	&:focus {
-		background-color: rgb(195, 255, 216);
-		outline: none;
-	}
+	z-index: 999;
+	transition: 0.8s all ease;
 `;

@@ -5,7 +5,7 @@ export const Content = styled.div`
 	padding: 20px 10px;
 	margin: 20px 10px;
 	width: 85%;
-	max-width: 350px;
+	max-width: 450px;
 	max-height: 500px;
 	display: flex;
 	justify-content: space-between;
@@ -18,9 +18,9 @@ export const Content = styled.div`
 `;
 
 export const ContentImg = styled.img`
-	width: fit-content;
+	width: 350px;
 	max-width: 95%;
-	height: 70%;
+	height: 60%;
 	max-height: 70%;
 	border-radius: 5px;
 `;

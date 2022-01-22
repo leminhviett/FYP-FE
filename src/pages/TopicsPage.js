@@ -1,80 +1,74 @@
 import React from "react";
-import { useEffect, useContext, useState } from "react";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
-
 import CardGridContainer from "../components/CardGridContainer";
 import Card from "../components/Card";
 import NormalizeContainer from "../components/NormalizeContainer";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { api } from "../App";
+import { useEffect, useContext, useState } from "react";
 import GlobalContext from "../context/Context";
 import ActionBtn from "../components/ActionBtn";
 import { Container, ViewContainer } from "../components/ToggleView/components";
-import { fetchChallenge } from "../context/action";
-import Challenge from "../components/DetailView/Challenge";
+import { fetchTopic } from "../context/action";
+import { TopicView } from "../components/DetailView/TopicView";
 
-import { api } from "../App";
-
-const BASE_URL = process.env.REACT_APP_SERVER_URL;
-
-const ChallengesPage = () => {
+const TopicsPage = () => {
 	const { path } = useRouteMatch();
 	const [state, dispatch] = useContext(GlobalContext);
 	const [page_no, set_page_no] = useState(1);
 	const [content, set_content] = useState([]);
 
-	const challenges = async () => {
+	const topics = async () => {
 		var content;
 
-		if (state.challenges.has(page_no)) {
-			content = state.challenges.get(page_no);
+		if (state.topics.has(page_no)) {
+			content = state.topics.get(page_no);
 			console.log("content locally");
 			set_content(content);
 			return;
 		}
 
-		await api.get(`/challenges/${page_no}`).then((response) => {
-			var challenges = JSON.parse(response.data.payload);
-			dispatch(fetchChallenge({ page: page_no, content: challenges }));
+		await api.get(`/topics/${page_no}`).then((response) => {
+			var topics = JSON.parse(response.data.payload);
+			dispatch(fetchTopic({ page: page_no, content: topics }));
 
-			content = challenges;
+			content = topics;
 			console.log("content remotely");
 			console.log(content);
 			set_content(content);
 		});
 	};
 
-	useEffect(challenges, [page_no]);
+	useEffect(topics, [page_no]);
 
 	return (
 		<>
 			<NormalizeContainer>
 				<Switch>
 					<Route exact path={path}>
-						<h1>Challenges</h1>
+						<h1>topics</h1>
 
 						<CardGridContainer>
 							{content.map((ele) => {
 								ele.id = ele._id["$oid"];
-
 								return (
 									<Card
-										name={ele.challenge_name}
-										desc={ele.challenge_desc}
-										imgSrc={`${BASE_URL}/${ele.img_loc}`}
-										key={ele.id}
-										path={`${path}/${page_no}/${ele.id}`}
-										card_action="Hack it"
+										name={ele.topic_name}
+										desc={ele.topic_desc}
+										imgSrc={`${process.env.REACT_APP_SERVER_URL}/${ele.banner_img}`}
+										key={ele._id["$oid"]}
+										path={`${path}/view/${page_no}/${ele.id}`}
+										page_no={page_no}
+										challenge_id={ele._id["$oid"]}
+										card_action="View"
 									/>
 								);
 							})}
 						</CardGridContainer>
 
-						{/* switch page */}
 						<Container>
 							<ViewContainer>
 								<ActionBtn
-									onClick={() => {
-										set_page_no(page_no - 1);
-									}}
+									onClick={() => set_page_no(page_no - 1)}
 									disabled={page_no == 1}
 								>
 									Prev
@@ -83,9 +77,7 @@ const ChallengesPage = () => {
 							<p>Page {page_no}</p>
 							<ViewContainer>
 								<ActionBtn
-									onClick={() => {
-										set_page_no(page_no + 1);
-									}}
+									onClick={() => set_page_no(page_no + 1)}
 									disabled={content.length == 0}
 								>
 									Next
@@ -94,12 +86,13 @@ const ChallengesPage = () => {
 						</Container>
 					</Route>
 
-					<Route path={`${path}/:page_no/:challengeID`}>
-						<Challenge />
+					<Route path={`${path}/view/:page_no/:challengeID`}>
+						<TopicView />
 					</Route>
 				</Switch>
 			</NormalizeContainer>
 		</>
 	);
 };
-export default ChallengesPage;
+
+export default TopicsPage;
