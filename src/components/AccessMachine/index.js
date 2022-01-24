@@ -1,14 +1,13 @@
 import React from "react";
 import { OuterContainer, InnerContainer } from "./components";
-import { Login } from "../Form/RegisterLogin";
+import AccessMachineForm from "../Form/AccessMachine";
 const AccessMachine = ({ visible }) => {
 	var style = () => (visible ? {} : { display: "none" });
 
 	return (
 		<OuterContainer style={style()}>
 			<InnerContainer>
-				<p>AccessMachine</p>
-				<Login />
+				<AccessMachineForm />
 			</InnerContainer>
 		</OuterContainer>
 	);

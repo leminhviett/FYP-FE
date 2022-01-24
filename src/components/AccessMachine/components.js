@@ -9,7 +9,6 @@ export const OuterContainer = styled.div`
 `;
 
 export const InnerContainer = styled.div`
-	padding: 10px;
 	width: 600px;
 	background-color: #2a364a;
 	color: white;

@@ -11,6 +11,8 @@ const ActionBtn = styled.button`
 	align-items: center;
 	transition: all 0.2s ease-in-out;
 	text-decoration: none;
+	height: 40%;
+	margin: 20px;
 
 	padding: ${({ small }) => (small ? "12px 30px" : "14px 40px")};
 	font-size: ${({ small }) => (small ? "14px" : "20px")};

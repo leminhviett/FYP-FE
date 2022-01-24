@@ -10,5 +10,7 @@ export const Container = styled.div`
 export const ViewContainer = styled.div`
 	display: flex;
 	justify-content: center;
-	width: 25%;
+	align-items: center;
+	height: 150px;
+	margin: 25px;
 `;

@@ -1,14 +1,11 @@
 import React from "react";
-import NormalizeContainer from "../../NormalizeContainer";
 import ActionBtn from "../../ActionBtn";
 import { FormContainer, Input } from "../components";
 import { useState } from "react";
 import { api } from "../../../App";
-import { useHistory } from "react-router-dom";
 
 const AddSectionTopic = ({ topic_id, visible }) => {
 	const [heading, setHeading] = useState("");
-	const history = useHistory();
 
 	const submitTask = async (e) => {
 		// e.preventDefault();

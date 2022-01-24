@@ -1,19 +1,15 @@
 import React from "react";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
 import NormalizeContainer from "../components/NormalizeContainer";
 import { checkValidToken } from "../utils";
 import JoinningPage from "./JoinningPage";
 import { useHistory } from "react-router-dom";
 import { api } from "../App";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import CardGridContainer from "../components/CardGridContainer";
 import Card from "../components/Card";
-import GlobalContext from "../context/Context";
 
 const MyPage = () => {
-	const { path } = useRouteMatch();
 	const [content, setContent] = useState([]);
-	const [state, dispath] = useContext(GlobalContext);
 
 	useEffect(() => {
 		api.get(`/progress/topic`, {

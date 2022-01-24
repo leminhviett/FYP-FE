@@ -80,7 +80,9 @@ const ChallengesPage = () => {
 									Prev
 								</ActionBtn>
 							</ViewContainer>
-							<p>Page {page_no}</p>
+							<ViewContainer>
+								<h3>Page {page_no}</h3>
+							</ViewContainer>
 							<ViewContainer>
 								<ActionBtn
 									onClick={() => {

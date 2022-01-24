@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ToggleView from "../components/ToggleView";
 import { checkValidToken } from "../utils";
 import JoinningPage from "./JoinningPage";
 import { useHistory, useLocation, Route, Switch, useRouteMatch } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { RoutingBtn } from "../components/RoutingBtn";
 import NormalizeContainer from "../components/NormalizeContainer";
 import Card from "../components/Card";
@@ -12,7 +11,6 @@ import { api } from "../App";
 import Challenge from "../components/DetailView/Challenge";
 import ActionBtn from "../components/ActionBtn";
 import { AddTaskChallenge } from "../components/Form/MyDevComp";
-import Topic from "../components/DetailView/TopicDev";
 import { SplitContainer } from "../components/Form/MyDevComp/components";
 import TopicDev from "../components/DetailView/TopicDev";
 

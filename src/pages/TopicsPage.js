@@ -17,7 +17,8 @@ const TopicsPage = () => {
 	const [page_no, set_page_no] = useState(1);
 	const [content, set_content] = useState([]);
 
-	const topics = async () => {
+	useEffect(async () => {
+		//fetch topic
 		var content;
 
 		if (state.topics.has(page_no)) {
@@ -36,9 +37,7 @@ const TopicsPage = () => {
 			console.log(content);
 			set_content(content);
 		});
-	};
-
-	useEffect(topics, [page_no]);
+	}, [page_no]);
 
 	return (
 		<>
@@ -74,7 +73,9 @@ const TopicsPage = () => {
 									Prev
 								</ActionBtn>
 							</ViewContainer>
-							<p>Page {page_no}</p>
+							<ViewContainer>
+								<h3>Page {page_no}</h3>
+							</ViewContainer>
 							<ViewContainer>
 								<ActionBtn
 									onClick={() => set_page_no(page_no + 1)}

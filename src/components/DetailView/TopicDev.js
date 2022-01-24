@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { ContentBannerContainer, ContentContainer, ContentBannerImg } from "./components";
 import { SplitContainer } from "../Form/MyDevComp/components";
 
-const TopicDev = ({ id }) => {
+const TopicDev = ({}) => {
 	const [target_page, set_target_page] = useState();
 	const [taskForm, setTaskForm] = useState(false);
 	const [sectionForm, setSectionForm] = useState(false);
@@ -20,7 +20,6 @@ const TopicDev = ({ id }) => {
 	console.log(id);
 
 	useEffect(() => {
-		console.log("call server");
 		api.get(`/topic?topic_id=${id}`, {
 			headers: { bearer_token: localStorage.getItem("token") },
 		})
@@ -40,52 +39,57 @@ const TopicDev = ({ id }) => {
 			return tasks.map((ele, idx) => {
 				return (
 					<div style={{ "text-indent": "20px" }} key={idx}>
-						<p>
-							<b>Descriptionn</b>: {ele.desc}
-						</p>
-						<p>
-							<b>Question</b>: {ele.ques}
-						</p>
-						<p>
-							<b>Answer</b>: {ele.ans}
-						</p>
+						<h3>Task {idx + 1}</h3>
+						<div style={{ "text-indent": "30px" }} key={idx}>
+							<p>
+								<b>Description</b>: {ele.desc}
+							</p>
+							<p>
+								<b>Question</b>: {ele.ques}
+							</p>
+							<p>
+								<b>Answer</b>: {ele.ans}
+							</p>
+						</div>
 					</div>
 				);
 			});
 		};
 		return (
 			<>
-				<ContentContainer>
-					<h2>Sections</h2>
-					<ActionBtn onClick={() => setSectionForm(!sectionForm)}>
-						Append section
-					</ActionBtn>
-
+				<div>
 					{sections.map((ele, idx) => (
-						<div style={{ "text-indent": "20px" }} key={idx}>
-							<h3>
-								Section {idx}: {ele.heading}
-							</h3>
-
-							<div>
-								<h4>Tasks</h4>
-								<ActionBtn
-									onClick={() => {
-										setTaskForm(!taskForm);
-										set_sectionIdx(idx);
+						<div key={idx}>
+							<div style={{ "text-indent": "10px" }}>
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "row",
+										justifyContent: "space-between",
 									}}
 								>
-									Add more task
-								</ActionBtn>
-							</div>
+									<h3>
+										Section {idx + 1}: {ele.heading}
+									</h3>
+									<ActionBtn
+										onClick={() => {
+											setTaskForm(!taskForm);
+											set_sectionIdx(idx);
+										}}
+									>
+										Add task
+									</ActionBtn>
+								</div>
 
-							<div>{tasks(ele.tasks)}</div>
+								<div>{tasks(ele.tasks)}</div>
+							</div>
 						</div>
 					))}
-				</ContentContainer>
+				</div>
 			</>
 		);
 	};
+
 	return (
 		<SplitContainer>
 			<div style={{ flex: "40%" }}>
@@ -105,7 +109,23 @@ const TopicDev = ({ id }) => {
 						<b>Author</b>: {target_page.author_name}
 					</p>
 				</ContentContainer>
-				<ContentContainer>{sections(target_page.sections)}</ContentContainer>
+
+				<ContentContainer>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "space-between",
+						}}
+					>
+						<h2>Sections</h2>
+						<ActionBtn onClick={() => setSectionForm(!sectionForm)}>
+							Append section
+						</ActionBtn>
+					</div>
+
+					{sections(target_page.sections)}
+				</ContentContainer>
 			</div>
 			<div
 				style={{

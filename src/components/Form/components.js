@@ -19,7 +19,7 @@ export const FormContainer = styled.div`
 export const Input = styled.input`
 	width: 80%;
 	padding: 15px;
-	margin: 15px 0 22px 0;
+	margin: 15px 0;
 	display: inline-block;
 	border-radius: 5px;
 	border: none;

@@ -1,17 +1,14 @@
 import React from "react";
-import NormalizeContainer from "../../NormalizeContainer";
 import ActionBtn from "../../ActionBtn";
 import { FormContainer, Input } from "../components";
 import { useState } from "react";
 import { api } from "../../../App";
-import { useHistory } from "react-router-dom";
 
 const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 	const [desc, setDesc] = useState("");
 	const [ques, setQues] = useState("");
 	const [ans, setAns] = useState("");
 	const [img, setImg] = useState();
-	const history = useHistory();
 
 	console.log(visible);
 	const submitTask = async (e) => {
