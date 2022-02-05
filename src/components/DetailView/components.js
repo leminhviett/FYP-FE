@@ -16,12 +16,13 @@ export const ContentBannerContainer = styled.div`
 	width: 900px;
 	max-width: 90%
 	overflow: hidden;
+	margin: 50px;
 `;
 
 export const ContentBannerImg = styled.img`
-	height: 300px;
+	height: 350px;
 	width: 90%;
-	--o-object-fit: cover;
-	object-fit: cover;
+	--o-object-fit: center;
+	object-fit: center;
 	background: #232a24;
 `;

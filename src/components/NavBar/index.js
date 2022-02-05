@@ -5,7 +5,7 @@ import { Nav, NavLogo, NavContainer, NavMenu, NavItemRoute, NavBtn } from "./com
 import { checkValidToken } from "../../utils";
 import { RoutingBtn } from "../RoutingBtn";
 import ActionBtn from "../ActionBtn";
-import AccessMachine from "../AccessMachine";
+import AccessMachine from "../AttackMachine";
 import { useState } from "react";
 
 const NavBar = () => {
@@ -37,23 +37,14 @@ const NavBar = () => {
 		return (
 			<>
 				<ActionBtn
-					onClick={(e) => {
-						localStorage.clear();
-						history.push("/");
-					}}
 					darktheme={true}
-				>
-					Log out
-				</ActionBtn>
-
-				<ActionBtn
 					onClick={(e) => {
 						setVisible(!visible);
 
 						console.log("clicked ", visible);
 					}}
 				>
-					Access Machine
+					Attack Machine
 				</ActionBtn>
 			</>
 		);

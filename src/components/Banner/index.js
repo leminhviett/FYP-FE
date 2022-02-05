@@ -26,7 +26,7 @@ const Banner = () => {
 				<BannerH>A hacking play ground</BannerH>
 				<BannerP>Join us to take your hacking skills to the next level</BannerP>
 				<RoutingBtn
-					to="/join_now"
+					to="/joining/auth"
 					onMouseEnter={onHover}
 					onMouseLeave={onHover}
 					darktheme={true}

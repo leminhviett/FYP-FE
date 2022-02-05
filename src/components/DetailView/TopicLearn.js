@@ -9,6 +9,7 @@ import { api } from "../../App";
 import "./collapsible.css";
 import { Input } from "../Form/components";
 import ActionBtn from "../ActionBtn";
+import TargetMachine from "../TargetMachine";
 
 const TopicLearn = () => {
 	var location = useLocation();
@@ -71,7 +72,12 @@ const TopicLearn = () => {
 	};
 
 	const Task = ({ task, task_idx, section_idx }) => {
+		const check_correct_ans = () => done && done[section_idx] && done[section_idx][task_idx];
+
 		const [ans, setAns] = useState("");
+		const [localDone, setLocalDone] = useState(
+			check_correct_ans() ? done[section_idx][task_idx] : null
+		);
 
 		const submitAns = (e) => {
 			e.preventDefault();
@@ -91,18 +97,13 @@ const TopicLearn = () => {
 			)
 				.then((response) => {
 					console.log(response.data);
-
-					var new_done = done;
-					if (!new_done[section_idx]) new_done[section_idx] = {};
-					new_done[section_idx][task_idx] = ans;
-					setDone(new_done);
+					setLocalDone(ans);
 				})
 				.catch((err) => {
 					alert("Wrong answer");
 				});
 		};
 
-		const check_correct_ans = () => done && done[section_idx] && done[section_idx][task_idx];
 		return (
 			<>
 				<h3>Task {task_idx + 1}</h3>
@@ -113,18 +114,19 @@ const TopicLearn = () => {
 				<div style={{ display: "flex", justifyContent: "space-between" }}>
 					<Input
 						type="text"
-						value={check_correct_ans ? done[section_idx][task_idx] : ans}
+						value={localDone ? localDone : ans}
 						placeholder={`Hint: ${task.ans}`}
 						onChange={(e) => setAns(e.target.value)}
-						disabled={check_correct_ans ? "disabled" : ""}
+						disabled={localDone ? "disabled" : ""}
 					></Input>
 					<ActionBtn
 						onClick={(e) => {
 							submitAns(e);
 						}}
-						disabled={check_correct_ans()}
+						disabled={localDone}
+						darktheme={localDone}
 					>
-						{check_correct_ans() ? "Correct Answer" : "Submit"}
+						{localDone ? "Correct Answer" : "Submit"}
 					</ActionBtn>
 				</div>
 			</>
@@ -132,6 +134,16 @@ const TopicLearn = () => {
 	};
 	if (!target_page || !done) return <></>;
 
+	const target_machine = () => {
+		if (target_page.target_machine) {
+			return (
+				<ContentContainer>
+					<TargetMachine path={target_page.target_machine} />
+				</ContentContainer>
+			);
+		}
+		return;
+	};
 	return (
 		<NormalizeContainer>
 			<div>
@@ -141,7 +153,7 @@ const TopicLearn = () => {
 					></ContentBannerImg>
 				</ContentBannerContainer>
 				<h1>Topic: {target_page.topic_name}</h1>
-
+				{target_machine()}
 				<ContentContainer>
 					<h2>About</h2>
 					<p>

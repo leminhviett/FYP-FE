@@ -54,13 +54,16 @@ const AccessMachineForm = () => {
 	const waiting = (visWait) => {
 		if (!visWait) return <></>;
 		return (
-			<Rings
-				radius={12}
-				height={120}
-				width={120}
-				arialLabel="loading-indicator"
-				color={color}
-			/>
+			<>
+				<h2>Please wait ...</h2>
+				<Rings
+					radius={12}
+					height={120}
+					width={120}
+					arialLabel="loading-indicator"
+					color={color}
+				/>
+			</>
 		);
 	};
 

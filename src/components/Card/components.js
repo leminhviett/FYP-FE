@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Content = styled.div`
 	background-color: #2a364a;
-	padding: 20px 10px;
-	margin: 20px 10px;
-	width: 85%;
+	padding: 20px 15px;
+	margin: 20px 15px;
+	width: 75%;
 	max-width: 450px;
 	max-height: 500px;
 	display: flex;
@@ -23,4 +23,6 @@ export const ContentImg = styled.img`
 	height: 60%;
 	max-height: 70%;
 	border-radius: 5px;
+	--o-object-fit: center;
+	object-fit: center;
 `;

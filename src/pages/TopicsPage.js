@@ -44,50 +44,70 @@ const TopicsPage = () => {
 			<NormalizeContainer>
 				<Switch>
 					<Route exact path={path}>
-						<h1>topics</h1>
-
-						<CardGridContainer>
-							{content.map((ele) => {
-								ele.id = ele._id["$oid"];
-								return (
+						<h1>Topics</h1>
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "column",
+								justifyContent: "flex-start",
+							}}
+						>
+							<div>
+								<h2>Featured Topics</h2>
+								<div>
 									<Card
-										name={ele.topic_name}
-										desc={ele.topic_desc}
-										imgSrc={`${process.env.REACT_APP_SERVER_URL}/${ele.banner_img}`}
-										key={ele._id["$oid"]}
-										path={`${path}/view/${page_no}/${ele.id}`}
-										page_no={page_no}
-										challenge_id={ele._id["$oid"]}
+										name={"SQL Injection"}
 										card_action="View"
+										imgSrc={`${process.env.REACT_APP_SERVER_URL}/img/SQL Injection_64633bd2-7346-4e63-b05a-28604ddadc53.png`}
+										path={`${path}/view/featured/61fddf54b8c48f849c7e1e27`}
 									/>
-								);
-							})}
-						</CardGridContainer>
+								</div>
+							</div>
 
-						<Container>
-							<ViewContainer>
-								<ActionBtn
-									onClick={() => set_page_no(page_no - 1)}
-									disabled={page_no == 1}
-								>
-									Prev
-								</ActionBtn>
-							</ViewContainer>
-							<ViewContainer>
-								<h3>Page {page_no}</h3>
-							</ViewContainer>
-							<ViewContainer>
-								<ActionBtn
-									onClick={() => set_page_no(page_no + 1)}
-									disabled={content.length == 0}
-								>
-									Next
-								</ActionBtn>
-							</ViewContainer>
-						</Container>
+							<div>
+								<h2>All Topics</h2>
+								<CardGridContainer>
+									{content.map((ele) => {
+										ele.id = ele._id["$oid"];
+										return (
+											<Card
+												name={ele.topic_name}
+												desc={ele.topic_desc}
+												imgSrc={`${process.env.REACT_APP_SERVER_URL}/${ele.banner_img}`}
+												key={ele._id["$oid"]}
+												path={`${path}/view/${page_no}/${ele.id}`}
+												page_no={page_no}
+												card_action="View"
+											/>
+										);
+									})}
+								</CardGridContainer>
+
+								<Container>
+									<ViewContainer>
+										<ActionBtn
+											onClick={() => set_page_no(page_no - 1)}
+											disabled={page_no == 1}
+										>
+											Prev
+										</ActionBtn>
+									</ViewContainer>
+									<ViewContainer>
+										<h3>Page {page_no}</h3>
+									</ViewContainer>
+									<ViewContainer>
+										<ActionBtn
+											onClick={() => set_page_no(page_no + 1)}
+											disabled={content.length == 0}
+										>
+											Next
+										</ActionBtn>
+									</ViewContainer>
+								</Container>
+							</div>
+						</div>
 					</Route>
-
-					<Route path={`${path}/view/:page_no/:challengeID`}>
+					<Route path={`${path}/view/:page_no/:topicID`}>
 						<TopicView />
 					</Route>
 				</Switch>

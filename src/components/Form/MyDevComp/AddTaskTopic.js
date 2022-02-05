@@ -13,18 +13,9 @@ const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 	console.log(visible);
 	const submitTask = async (e) => {
 		// e.preventDefault();
-		console.log(section_idx);
+		console.log("clicked");
 		// return;
-		var reader = new FileReader();
-		reader.readAsDataURL(img);
-		reader.onload = () => {
-			var task_data = {
-				desc: desc,
-				ques: ques,
-				ans: ans,
-				img_data: reader.result.split(",")[1],
-			};
-
+		const helperSubmit = (task_data) => {
 			api.post(
 				"/topic/task",
 				{ section_idx: section_idx, task_data, topic_id: topic_id },
@@ -38,6 +29,29 @@ const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 				})
 				.catch((err) => console.log(err));
 		};
+
+		console.log(section_idx);
+		if (img) {
+			var reader = new FileReader();
+			reader.readAsDataURL(img);
+			reader.onload = () => {
+				var task_data = {
+					desc: desc,
+					ques: ques,
+					ans: ans,
+					img_data: reader.result.split(",")[1],
+				};
+				helperSubmit(task_data);
+			};
+		} else {
+			var task_data = {
+				desc: desc,
+				ques: ques,
+				ans: ans,
+			};
+
+			helperSubmit(task_data);
+		}
 	};
 
 	var style = () => (visible ? {} : { display: "none" });

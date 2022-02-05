@@ -16,6 +16,10 @@ const AddChallenges = () => {
 	const submitChallenge = (e) => {
 		e.preventDefault();
 
+		if (!img || !vm) {
+			alert("Missing image banner or VM file");
+			return;
+		}
 		var form = new FormData();
 		form.append("challenge_name", name);
 		form.append("challenge_desc", desc);
@@ -46,7 +50,6 @@ const AddChallenges = () => {
 						onChange={(e) => {
 							setName(e.target.value);
 						}}
-						required
 					/>
 
 					<label>
@@ -63,7 +66,7 @@ const AddChallenges = () => {
 					/>
 
 					<label>
-						<b>VM</b>
+						<b>VM file</b>
 					</label>
 					<Input
 						type="file"

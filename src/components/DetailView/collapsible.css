@@ -1,7 +1,7 @@
 .trigger_class {
 	font-size: 20px;
-	background: green;
-	color: white;
+	background: #01bf71;
+	color: black;
 	display: block;
 	padding: 20px;
 	margin: 5px;
@@ -9,10 +9,11 @@
 
 .trigger_class_opened {
 	font-size: 25px;
-	background: green;
-	color: white;
+	background: #01bf71;
+	color: black;
 	display: block;
 	padding: 15px;
+	font-weight: bold;
 }
 
 .content_inner {

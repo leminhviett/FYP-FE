@@ -24,6 +24,7 @@ export const Input = styled.input`
 	border-radius: 5px;
 	border: none;
 	background: #f1f1f1;
+	color: #000;
 
 	&:focus {
 		background-color: rgb(195, 255, 216);

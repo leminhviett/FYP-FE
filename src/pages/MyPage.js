@@ -7,6 +7,7 @@ import { api } from "../App";
 import { useState, useEffect } from "react";
 import CardGridContainer from "../components/CardGridContainer";
 import Card from "../components/Card";
+import ActionBtn from "../components/ActionBtn";
 
 const MyPage = () => {
 	const [content, setContent] = useState([]);
@@ -57,7 +58,7 @@ const MyPage = () => {
 						<Card
 							name={ele.topic_name}
 							desc={ele.topic_desc}
-							imgSrc={`${process.env.REACT_APP_SERVER_URL}/${ele.img_loc}`}
+							imgSrc={`${process.env.REACT_APP_SERVER_URL}/${ele.banner_img}`}
 							key={ele._id}
 							path={`/topic/${ele._id}`}
 							challenge_id={ele._id}
@@ -65,6 +66,16 @@ const MyPage = () => {
 						/>
 					))}
 				</CardGridContainer>
+
+				<ActionBtn
+					onClick={(e) => {
+						localStorage.clear();
+						history.push("/");
+					}}
+					darktheme={true}
+				>
+					Log out
+				</ActionBtn>
 			</NormalizeContainer>
 		</>
 	);

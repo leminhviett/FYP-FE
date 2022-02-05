@@ -22,7 +22,7 @@ const ActionBtn = styled.button`
 
 	&:hover {
 		transition: all 0.2s ease-in-out;
-		background: ${({ darktheme }) => (darktheme ? "#fff" : "#01BF71")};
+		background: ${({ darktheme }) => (darktheme ? "#e8e8e8" : "#01BF71")};
 	}
 `;
 

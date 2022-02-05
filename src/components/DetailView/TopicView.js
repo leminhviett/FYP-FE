@@ -79,27 +79,4 @@ export const TopicView = () => {
 			</ActionBtn>
 		</>
 	);
-	return (
-		<div>
-			<h1>Topic: {target_page.topic_name}</h1>
-			<h3>Author: {target_page.author_name}</h3>
-			{/* <ContentImg
-				src={`${process.env.REACT_APP_SERVER_URL}/${target_page.img_loc}`}
-			></ContentImg> */}
-			<p>{target_page.topic_desc}</p>
-			<a href={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}>
-				Download here
-			</a>
-			<h2>Sections</h2>
-			{target_page.sections.map((section) => {
-				return section.tasks.map((task) => {
-					return (
-						<>
-							<p>{task.desc}</p>
-						</>
-					);
-				});
-			})}
-		</div>
-	);
 };
