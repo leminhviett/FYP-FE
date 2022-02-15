@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const ContentContainer = styled.div`
-	background-color: #2a364a;
 	margin-bottom: 10px;
 	padding: 15px;
 	padding-left: 25px;
 	padding-right: 25px;
+	background-color: #f7f7f7;
+	color: black;
+	border-style: groove;
+	border-color: #2a364a;
+	border-width: thin;
 `;
 
 export const ContentBannerContainer = styled.div`
@@ -16,7 +20,7 @@ export const ContentBannerContainer = styled.div`
 	width: 900px;
 	max-width: 90%
 	overflow: hidden;
-	margin: 50px;
+	margin: 50px 0;
 `;
 
 export const ContentBannerImg = styled.img`

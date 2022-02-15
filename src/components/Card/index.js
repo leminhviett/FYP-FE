@@ -9,7 +9,7 @@ const Card = ({ name, desc, imgSrc, path, card_action }) => {
 
 			<>
 				<h3>{name}</h3>
-				<RoutingBtn to={path} primary="true" dark="true" element={<p>Hello</p>}>
+				<RoutingBtn to={path} darktheme={true} element={<p>Hello</p>}>
 					{card_action}
 				</RoutingBtn>
 			</>

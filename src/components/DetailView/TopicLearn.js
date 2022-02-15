@@ -20,6 +20,14 @@ const TopicLearn = () => {
 	const [done, setDone] = useState();
 	var [target_page, set_target_page] = useState();
 
+	useEffect(() => {
+		// set special BG then return back in clean up
+		var temp = document.body.style;
+		document.body.style = "background:#faf7f2";
+
+		return () => (document.body.style = temp);
+	}, []);
+
 	const get_progress = () => {
 		api.get(`/progress/topic/${id}`, {
 			headers: { bearer_token: localStorage.getItem("token") },
@@ -114,19 +122,19 @@ const TopicLearn = () => {
 				<div style={{ display: "flex", justifyContent: "space-between" }}>
 					<Input
 						type="text"
-						value={localDone ? localDone : ans}
+						value={localDone || localDone == "" ? localDone : ans}
 						placeholder={`Hint: ${task.ans}`}
 						onChange={(e) => setAns(e.target.value)}
-						disabled={localDone ? "disabled" : ""}
+						disabled={localDone || localDone == "" ? "disabled" : ""}
 					></Input>
 					<ActionBtn
 						onClick={(e) => {
 							submitAns(e);
 						}}
-						disabled={localDone}
-						darktheme={localDone}
+						disabled={localDone || localDone == ""}
+						darktheme={localDone || localDone == ""}
 					>
-						{localDone ? "Correct Answer" : "Submit"}
+						{localDone || localDone == "" ? "Correct Answer" : "Submit"}
 					</ActionBtn>
 				</div>
 			</>
@@ -135,10 +143,10 @@ const TopicLearn = () => {
 	if (!target_page || !done) return <></>;
 
 	const target_machine = () => {
-		if (target_page.target_machine) {
+		if (target_page.img_repo != "") {
 			return (
 				<ContentContainer>
-					<TargetMachine path={target_page.target_machine} />
+					<TargetMachine resource_name={target_page.img_repo} />
 				</ContentContainer>
 			);
 		}
@@ -146,22 +154,24 @@ const TopicLearn = () => {
 	};
 	return (
 		<NormalizeContainer>
-			<div>
+			<div style={{ width: "80%" }}>
 				<ContentBannerContainer>
-					<ContentBannerImg
-						src={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}
-					></ContentBannerImg>
+					<div>
+						<ContentBannerImg
+							src={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}
+						></ContentBannerImg>
+					</div>
 				</ContentBannerContainer>
-				<h1>Topic: {target_page.topic_name}</h1>
 				{target_machine()}
 				<ContentContainer>
-					<h2>About</h2>
-					<p>
-						<b>Desc</b>: {target_page.topic_desc}
-					</p>
+					<h1>Topic: {target_page.topic_name}</h1>
 					<p>
 						<b>Author</b>: {target_page.author_name}
 					</p>
+					<p>
+						<b>Description</b>
+					</p>
+					<p>{target_page.topic_desc}</p>
 				</ContentContainer>
 				{target_page.sections.map((ele, idx) => (
 					<Section section_idx={idx} section={ele} topic_id={id} done={done} key={idx} />

@@ -4,7 +4,7 @@ import ActionBtn from "../../components/ActionBtn";
 import { api } from "../../App";
 import { Rings } from "react-loader-spinner";
 
-const TargetMachine = ({ path }) => {
+const TargetMachine = ({ resource_name }) => {
 	const [ip, setIP] = useState("");
 	const [port, setPort] = useState("");
 
@@ -21,7 +21,10 @@ const TargetMachine = ({ path }) => {
 		setVisQuery(false);
 		setVisWait(true);
 
-		api.post(`${path}`, { user_name: localStorage.getItem("username") })
+		api.post("/custom_resource", {
+			user_name: localStorage.getItem("username"),
+			resource_name: resource_name,
+		})
 			.then((response) => {
 				console.log(response.data);
 
@@ -80,7 +83,9 @@ const TargetMachine = ({ path }) => {
 			setColor("red");
 			setVisWait(true);
 
-			api.delete(`${path}`, { data: { user_name: localStorage.getItem("username") } })
+			api.delete("/custom_resource", {
+				data: { user_name: localStorage.getItem("username"), resource_name: resource_name },
+			})
 				.then((response) => {
 					alert(response.data.message);
 					setVisQuery(true);

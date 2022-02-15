@@ -50,16 +50,14 @@ export const TopicView = () => {
 						src={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}
 					></ContentBannerImg>
 				</ContentBannerContainer>
-				<h1>Topic: {target_page.topic_name}</h1>
 
 				<ContentContainer>
-					<h2>About</h2>
-					<p>
-						<b>Desc</b>: {target_page.topic_desc}
-					</p>
+					<h1>Topic: {target_page.topic_name}</h1>
+
 					<p>
 						<b>Author</b>: {target_page.author_name}
 					</p>
+					{target_page.topic_desc}
 				</ContentContainer>
 				<ContentContainer>{sections(target_page.sections)}</ContentContainer>
 			</div>

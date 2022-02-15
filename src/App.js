@@ -21,21 +21,21 @@ function App() {
 	return (
 		<Provider>
 			<Router>
-				<NavBar />
-				<Switch>
-					<Route path="/" component={LandingPage} exact />
-					{/* <Route path="/topics" component={LearnPage} exact /> */}
-					<Route path="/dev" component={DevelopPage} />
-					<Route path="/challenges" component={ChallengesPage} />
-					<Route path="/topics" component={TopicsPage} />
-					<Route path="/joining" component={JoinningPage} />
-					<Route path="/me" component={MyPage} exact />
+					<NavBar />
+					<Switch>
+						<Route path="/" component={LandingPage} exact />
+						{/* <Route path="/topics" component={LearnPage} exact /> */}
+						<Route path="/dev" component={DevelopPage} />
+						<Route path="/challenges" component={ChallengesPage} />
+						<Route path="/topics" component={TopicsPage} />
+						<Route path="/joining" component={JoinningPage} />
+						<Route path="/me" component={MyPage} exact />
 
-					<Route path="/new_challenge" component={AddChallenges} />
-					<Route path="/new_topic" component={AddTopics} />
+						<Route path="/new_challenge" component={AddChallenges} />
+						<Route path="/new_topic" component={AddTopics} />
 
-					<Route path="/topic" component={TopicLearn} />
-				</Switch>
+						<Route path="/topic" component={TopicLearn} />
+					</Switch>
 			</Router>
 		</Provider>
 	);
