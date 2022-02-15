@@ -11,6 +11,8 @@ import { Input } from "../Form/components";
 import ActionBtn from "../ActionBtn";
 import TargetMachine from "../TargetMachine";
 
+import ReactHtmlParser from "react-html-parser";
+
 const TopicLearn = () => {
 	var location = useLocation();
 	var temp = location.pathname.split("/");
@@ -23,7 +25,7 @@ const TopicLearn = () => {
 	useEffect(() => {
 		// set special BG then return back in clean up
 		var temp = document.body.style;
-		document.body.style = "background:#faf7f2";
+		document.body.style = "background:#fffdfa";
 
 		return () => (document.body.style = temp);
 	}, []);
@@ -154,7 +156,7 @@ const TopicLearn = () => {
 	};
 	return (
 		<NormalizeContainer>
-			<div style={{ width: "80%" }}>
+			<div style={{ width: "80%", maxWidth: "1800px" }}>
 				<ContentBannerContainer>
 					<div>
 						<ContentBannerImg
@@ -171,7 +173,7 @@ const TopicLearn = () => {
 					<p>
 						<b>Description</b>
 					</p>
-					<p>{target_page.topic_desc}</p>
+					{ReactHtmlParser(target_page.topic_desc)}
 				</ContentContainer>
 				{target_page.sections.map((ele, idx) => (
 					<Section section_idx={idx} section={ele} topic_id={id} done={done} key={idx} />

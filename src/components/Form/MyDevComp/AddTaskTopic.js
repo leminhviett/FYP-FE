@@ -3,6 +3,8 @@ import ActionBtn from "../../ActionBtn";
 import { FormContainer, Input } from "../components";
 import { useState } from "react";
 import { api } from "../../../App";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 	const [desc, setDesc] = useState("");
@@ -64,24 +66,25 @@ const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 			<form>
 				<FormContainer>
 					<label>
-						<b>Topic Desc</b>
+						<b>Topic Description</b>
 					</label>
-					<Input
-						type="text"
-						placeholder="Enter username"
-						value={desc}
-						onChange={(e) => {
-							setDesc(e.target.value);
-						}}
-						required
-					/>
+					<div style={{ width: "83%", padding: "15px", color: "black" }}>
+						<CKEditor
+							editor={ClassicEditor}
+							data={desc}
+							onChange={(event, editor) => {
+								const data = editor.getData();
+								setDesc(data);
+							}}
+						/>
+					</div>
 
 					<label>
 						<b>Question</b>
 					</label>
 					<Input
 						type="text"
-						placeholder="Enter pw"
+						placeholder="Enter Question"
 						value={ques}
 						onChange={(e) => {
 							setQues(e.target.value);

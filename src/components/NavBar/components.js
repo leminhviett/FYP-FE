@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as LinkR } from "react-router-dom";
 
 export const Nav = styled.nav`
-	background: ${({ transparent }) => (transparent ? "transparent" : "#141a24")};
+	background: ${({ transparent }) => (transparent ? "transparent" : "#1c2538")};
 	height: ${({ navHeight }) => navHeight};
 	margin-bottom: ${({ navHeight }) => `-${navHeight}`};
 	display: flex;
@@ -12,6 +12,7 @@ export const Nav = styled.nav`
 	position: sticky;
 	top: 0;
 	z-index: 100;
+	color: "#f2f2f2";
 
 	@media screen and (max-width: 960px) {
 		transition: 0.8s all ease;

@@ -25,8 +25,7 @@ export const ContentBannerContainer = styled.div`
 
 export const ContentBannerImg = styled.img`
 	height: 350px;
-	width: 90%;
-	--o-object-fit: center;
-	object-fit: center;
+	/* max-width: 1000px; */
+	max-width: 90%;
 	background: #232a24;
 `;
