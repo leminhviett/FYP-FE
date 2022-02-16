@@ -1,5 +1,9 @@
 body {
 	background-color: #141d2b;
 	font-family: "Ubuntu Mono", monospace;
-	font-size: medium;
+}
+
+p,
+label {
+	font-size: 24px;
 }
