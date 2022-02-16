@@ -82,7 +82,9 @@ const TopicDev = ({}) => {
 										onClick={() => {
 											setSectionForm(false);
 
-											if (sectionIdx == idx || sectionIdx == "") {
+											if (sectionIdx == -1) {
+												setTaskForm(true);
+											} else if (sectionIdx == idx) {
 												setTaskForm(!taskForm);
 											}
 
@@ -174,6 +176,7 @@ const TopicDev = ({}) => {
 				>
 					<AddSectionTopic topic_id={id} visible={sectionForm} form_style={form_style} />
 					<AddTaskTopic
+						topic_id={id}
 						visible={taskForm}
 						section_idx={sectionIdx}
 						form_style={form_style}

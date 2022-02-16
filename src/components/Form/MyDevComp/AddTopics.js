@@ -11,6 +11,8 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 const AddTopics = () => {
 	const [name, setName] = useState("");
 	const [desc, setDesc] = useState("");
+	const [repo_name, setRepoName] = useState("");
+
 	const [img, setImg] = useState();
 	const history = useHistory();
 
@@ -29,6 +31,7 @@ const AddTopics = () => {
 				topic_name: name,
 				topic_desc: desc,
 				banner_img: reader.result.split(",")[1],
+				img_repo: repo_name,
 			};
 
 			api.post("/topic", data, {
@@ -59,6 +62,19 @@ const AddTopics = () => {
 						value={name}
 						onChange={(e) => {
 							setName(e.target.value);
+						}}
+						required
+					/>
+
+					<label>
+						<b>Image repo name</b>
+					</label>
+					<Input
+						type="text"
+						placeholder="Eg: username/img_name:tag"
+						value={repo_name}
+						onChange={(e) => {
+							setRepoName(e.target.value);
 						}}
 						required
 					/>

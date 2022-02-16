@@ -76,6 +76,7 @@ const ChallengesPage = () => {
 										set_page_no(page_no - 1);
 									}}
 									disabled={page_no == 1}
+									darktheme={true}
 								>
 									Prev
 								</ActionBtn>
@@ -89,6 +90,7 @@ const ChallengesPage = () => {
 										set_page_no(page_no + 1);
 									}}
 									disabled={content.length == 0}
+									darktheme={true}
 								>
 									Next
 								</ActionBtn>

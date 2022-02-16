@@ -23,7 +23,7 @@ const Banner = () => {
 				<VideoBg autoPlay loop muted src={Video} type="video/mp4" />
 			</BannerBg>
 			<BannerContent>
-				<BannerH>A hacking play ground</BannerH>
+				<BannerH>Your Hacking Playground</BannerH>
 				<BannerP>Join us to take your hacking skills to the next level</BannerP>
 				<RoutingBtn
 					to="/joining/auth"

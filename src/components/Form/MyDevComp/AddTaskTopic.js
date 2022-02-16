@@ -16,8 +16,10 @@ const AddTaskTopic = ({ topic_id, section_idx, visible, form_style }) => {
 	const submitTask = async (e) => {
 		// e.preventDefault();
 		console.log("clicked");
-		// return;
+
 		const helperSubmit = (task_data) => {
+			console.log(task_data, section_idx, topic_id);
+			// return;
 			api.post(
 				"/topic/task",
 				{ section_idx: section_idx, task_data, topic_id: topic_id },
@@ -63,7 +65,7 @@ const AddTaskTopic = ({ topic_id, section_idx, visible, form_style }) => {
 		<div style={style()}>
 			<form>
 				<FormContainer style={form_style}>
-					<h1>Add new task</h1>
+					<h1>New task for section {section_idx + 1}</h1>
 
 					<label>
 						<b>Topic Description</b>
@@ -102,7 +104,6 @@ const AddTaskTopic = ({ topic_id, section_idx, visible, form_style }) => {
 						onChange={(e) => {
 							setAns(e.target.value);
 						}}
-						required
 					/>
 
 					<ActionBtn onClick={(e) => submitTask(e)}>Submit</ActionBtn>

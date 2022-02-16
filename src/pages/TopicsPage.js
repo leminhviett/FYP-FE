@@ -88,6 +88,7 @@ const TopicsPage = () => {
 										<ActionBtn
 											onClick={() => set_page_no(page_no - 1)}
 											disabled={page_no == 1}
+											darktheme={true}
 										>
 											Prev
 										</ActionBtn>
@@ -98,6 +99,7 @@ const TopicsPage = () => {
 									<ViewContainer>
 										<ActionBtn
 											onClick={() => set_page_no(page_no + 1)}
+											darktheme={true}
 											disabled={content.length == 0}
 										>
 											Next
