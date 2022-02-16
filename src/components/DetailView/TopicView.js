@@ -77,6 +77,7 @@ export const TopicView = () => {
 						{ headers: { bearer_token: localStorage.getItem("token") } }
 					).then((res) => console.log(res.data));
 					history.push(`/topic/${id}`);
+					history.go();
 				}}
 			>
 				Enroll for more

@@ -9,8 +9,7 @@ export const OuterContainer = styled.div`
 `;
 
 export const InnerContainer = styled.div`
-	width: 600px;
-	background-color: #2a364a;
+	width: auto;
 	color: white;
 	max-width: 1000px;
 	position: absolute;
@@ -22,6 +21,6 @@ export const InnerContainer = styled.div`
 	align-items: center;
 	flex-direction: column;
 	border-radius: 5px;
-	z-index: 999;
+	z-index: 500;
 	transition: 0.8s all ease;
 `;

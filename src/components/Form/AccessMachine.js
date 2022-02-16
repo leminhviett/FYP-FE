@@ -71,7 +71,12 @@ const AccessMachineForm = () => {
 		if (!visForm) return <></>;
 		return (
 			<form style={{ width: "800px" }}>
-				<FormContainer>
+				<FormContainer
+					style={{
+						backgroundColor: "white",
+						color: "black",
+					}}
+				>
 					<h1>Log in again to access VM</h1>
 
 					<label>
@@ -137,7 +142,10 @@ const AccessMachineForm = () => {
 						<b>Port: </b> {port}
 					</p>
 					<p>
-						Example command: <i>ssh username@ip -p port</i>
+						Example command:{" "}
+						<i>
+							ssh {localStorage.getItem("username")}@{ip} -p {port}
+						</i>
 					</p>
 				</div>
 				<ActionBtn
@@ -151,9 +159,18 @@ const AccessMachineForm = () => {
 		);
 	};
 	return (
-		<>
+		<div
+			style={{
+				backgroundColor: "white",
+				color: "black",
+				borderStyle: "groove",
+				borderColor: "#2a364a",
+				borderWidth: "thin",
+				padding: "15px",
+			}}
+		>
 			{waiting(visWait)} {form(visForm)} {result(visRes)}
-		</>
+		</div>
 	);
 };
 

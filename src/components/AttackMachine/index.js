@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { OuterContainer, InnerContainer } from "./components";
 import AccessMachineForm from "../Form/AccessMachine";
 const AccessMachine = ({ visible }) => {
