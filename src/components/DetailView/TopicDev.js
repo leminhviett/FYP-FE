@@ -30,6 +30,10 @@ const TopicDev = ({}) => {
 			.catch((err) => {
 				console.log(err);
 			});
+
+		// var temp = document.body.style;
+		// document.body.style = "background:#fffdfa";
+		// return () => (document.body.style = temp);
 	}, []);
 
 	if (!target_page) return <></>;

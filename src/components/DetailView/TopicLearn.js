@@ -124,19 +124,19 @@ const TopicLearn = () => {
 				<div style={{ display: "flex", justifyContent: "space-between" }}>
 					<Input
 						type="text"
-						value={localDone || localDone == "" ? localDone : ans}
+						value={localDone || task.ans == "" ? localDone : ans}
 						placeholder={`Hint: ${task.ans}`}
 						onChange={(e) => setAns(e.target.value)}
-						disabled={localDone || localDone == "" ? "disabled" : ""}
+						disabled={localDone || task.ans == "" ? "disabled" : ""}
 					></Input>
 					<ActionBtn
 						onClick={(e) => {
 							submitAns(e);
 						}}
-						disabled={localDone || localDone == ""}
-						darktheme={localDone || localDone == ""}
+						disabled={localDone || task.ans == ""}
+						darktheme={localDone || task.ans == ""}
 					>
-						{localDone || localDone == "" ? "Correct Answer" : "Submit"}
+						{localDone || task.ans == "" ? "Correct Answer" : "Submit"}
 					</ActionBtn>
 				</div>
 			</>
@@ -156,22 +156,18 @@ const TopicLearn = () => {
 	};
 	return (
 		<NormalizeContainer>
-			<div style={{ width: "80%", maxWidth: "1800px" }}>
+			<div style={{ width: "80%", maxWidth: "1250px" }}>
 				<ContentBannerContainer>
-					<div>
-						<ContentBannerImg
-							src={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}
-						></ContentBannerImg>
-					</div>
+					<ContentBannerImg
+						src={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}
+					></ContentBannerImg>
 				</ContentBannerContainer>
+
 				{target_machine()}
 				<ContentContainer>
 					<h1>Topic: {target_page.topic_name}</h1>
 					<p>
 						<b>Author</b>: {target_page.author_name}
-					</p>
-					<p>
-						<b>Description</b>
 					</p>
 					{ReactHtmlParser(target_page.topic_desc)}
 				</ContentContainer>

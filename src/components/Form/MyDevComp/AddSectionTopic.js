@@ -24,17 +24,6 @@ const AddSectionTopic = ({ topic_id, visible }) => {
 			})
 			.catch((err) => console.log(err));
 	};
-	// var style = (visible) => {
-	// 	var style_obj = {
-	// 		flex: "50%",
-	// 		margin: "20px",
-	// 	};
-	// 	if (visible) return style_obj;
-
-	// 	style_obj["display"] = "none";
-	// 	console.log(style_obj);
-	// 	return style_obj;
-	// };
 
 	var style = () => (visible ? {} : { display: "none" });
 

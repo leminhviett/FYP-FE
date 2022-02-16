@@ -5,7 +5,7 @@ export const ContentContainer = styled.div`
 	padding: 15px;
 	padding-left: 25px;
 	padding-right: 25px;
-	background-color: #f7f7f7;
+	background-color: #fff;
 	color: black;
 	border-style: groove;
 	border-color: #2a364a;
@@ -16,16 +16,17 @@ export const ContentBannerContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 300px;
-	width: 900px;
-	max-width: 90%
+	height: auto;
+	width: auto;
+	max-width: 100%
 	overflow: hidden;
 	margin: 50px 0;
 `;
 
 export const ContentBannerImg = styled.img`
-	height: 350px;
-	/* max-width: 1000px; */
+	height: auto;
+	max-height: 300px;
+	width: auto;
 	max-width: 90%;
 	background: #232a24;
 `;

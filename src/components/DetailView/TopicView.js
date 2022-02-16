@@ -5,6 +5,8 @@ import ActionBtn from "../ActionBtn";
 import { useHistory, useLocation } from "react-router-dom";
 import { ContentBannerContainer, ContentContainer, ContentBannerImg } from "./components";
 
+import ReactHtmlParser from "react-html-parser";
+
 export const TopicView = () => {
 	var location = useLocation();
 	var history = useHistory();
@@ -22,6 +24,11 @@ export const TopicView = () => {
 			.catch((err) => {
 				console.log(err);
 			});
+		// set special BG then return back in clean up
+
+		var temp = document.body.style;
+		document.body.style = "background:#fffdfa";
+		return () => (document.body.style = temp);
 	}, []);
 
 	if (target_page == null) return <></>;
@@ -33,9 +40,9 @@ export const TopicView = () => {
 
 					{sections.map((ele, idx) => (
 						<div style={{ "text-indent": "20px" }} key={idx}>
-							<h3>
+							<p>
 								Section {idx + 1}: {ele.heading}
-							</h3>
+							</p>
 						</div>
 					))}
 				</div>
@@ -53,11 +60,10 @@ export const TopicView = () => {
 
 				<ContentContainer>
 					<h1>Topic: {target_page.topic_name}</h1>
-
 					<p>
 						<b>Author</b>: {target_page.author_name}
 					</p>
-					{target_page.topic_desc}
+					{ReactHtmlParser(target_page.topic_desc)}
 				</ContentContainer>
 				<ContentContainer>{sections(target_page.sections)}</ContentContainer>
 			</div>
