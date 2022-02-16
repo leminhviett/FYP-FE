@@ -43,10 +43,18 @@ const AddTaskChallenge = ({ id }) => {
 
 	return (
 		<div>
-			<h2>Add more tasks</h2>
-
 			<form>
-				<FormContainer>
+				<FormContainer
+					style={{
+						backgroundColor: "white",
+						color: "black",
+						borderStyle: "groove",
+						borderColor: "#2a364a",
+						borderWidth: "thin",
+					}}
+				>
+					<h2>Add more tasks</h2>
+
 					<label>
 						<b>Question</b>
 					</label>
@@ -71,9 +79,7 @@ const AddTaskChallenge = ({ id }) => {
 						}}
 					/>
 
-					<ActionBtn darktheme={true} onClick={(e) => submitTaskChallenge(e)}>
-						Submit
-					</ActionBtn>
+					<ActionBtn onClick={(e) => submitTaskChallenge(e)}>Submit</ActionBtn>
 				</FormContainer>
 			</form>
 		</div>

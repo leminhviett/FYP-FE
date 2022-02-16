@@ -4,7 +4,7 @@ import { FormContainer, Input } from "../components";
 import { useState } from "react";
 import { api } from "../../../App";
 
-const AddSectionTopic = ({ topic_id, visible }) => {
+const AddSectionTopic = ({ topic_id, visible, form_style }) => {
 	const [heading, setHeading] = useState("");
 
 	const submitTask = async (e) => {
@@ -29,10 +29,10 @@ const AddSectionTopic = ({ topic_id, visible }) => {
 
 	return (
 		<div style={style()}>
-			<h1>Add new section</h1>
-
 			<form>
-				<FormContainer>
+				<FormContainer style={form_style}>
+					<h1>New section</h1>
+
 					<label>
 						<b>Section Heading</b>
 					</label>
@@ -46,9 +46,7 @@ const AddSectionTopic = ({ topic_id, visible }) => {
 						required
 					/>
 
-					<ActionBtn darktheme={true} onClick={(e) => submitTask(e)}>
-						Submit
-					</ActionBtn>
+					<ActionBtn onClick={(e) => submitTask(e)}>Submit</ActionBtn>
 				</FormContainer>
 			</form>
 		</div>

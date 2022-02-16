@@ -173,17 +173,6 @@ const MyChallenge = () => {
 
 	return (
 		<>
-			{/* <div
-				style={{
-					display: "flex",
-					flexDirection: "row",
-					width: "80%",
-					justifyContent: "space-between",
-				}}
-			>
-				<Challenge style={{ flex: "50%" }} />
-				<AddTaskChallenge style={{ flex: "50%", margin: "20px" }} id={id} />
-			</div> */}
 
 			<SplitContainer>
 				<Challenge style={{ flex: "50%" }} />

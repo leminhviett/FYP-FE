@@ -5,6 +5,8 @@ import { FormContainer, Input } from "../components";
 import { useState } from "react";
 import { api } from "../../../App";
 import { useHistory } from "react-router-dom";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddChallenges = () => {
 	const [name, setName] = useState("");
@@ -38,7 +40,7 @@ const AddChallenges = () => {
 		<NormalizeContainer>
 			<h1>Add new challenges</h1>
 
-			<form>
+			<form style={{ maxWidth: "1000px", width: "80%" }}>
 				<FormContainer>
 					<label>
 						<b>Challenge name</b>
@@ -55,15 +57,16 @@ const AddChallenges = () => {
 					<label>
 						<b>Description</b>
 					</label>
-					<Input
-						type="text"
-						placeholder="Enter pw"
-						value={desc}
-						onChange={(e) => {
-							setDesc(e.target.value);
-						}}
-						required
-					/>
+					<div style={{ width: "83%", padding: "15px", color: "black" }}>
+						<CKEditor
+							editor={ClassicEditor}
+							data={desc}
+							onChange={(event, editor) => {
+								const data = editor.getData();
+								setDesc(data);
+							}}
+						/>
+					</div>
 
 					<label>
 						<b>VM file</b>

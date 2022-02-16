@@ -6,7 +6,7 @@ import { api } from "../../../App";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
+const AddTaskTopic = ({ topic_id, section_idx, visible, form_style }) => {
 	const [desc, setDesc] = useState("");
 	const [ques, setQues] = useState("");
 	const [ans, setAns] = useState("");
@@ -61,10 +61,10 @@ const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 	console.log("new task");
 	return (
 		<div style={style()}>
-			<h1>Add new task</h1>
-
 			<form>
-				<FormContainer>
+				<FormContainer style={form_style}>
+					<h1>Add new task</h1>
+
 					<label>
 						<b>Topic Description</b>
 					</label>
@@ -97,7 +97,7 @@ const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 					</label>
 					<Input
 						type="text"
-						placeholder="Enter pw"
+						placeholder="Enter Answer"
 						value={ans}
 						onChange={(e) => {
 							setAns(e.target.value);
@@ -105,20 +105,7 @@ const AddTaskTopic = ({ topic_id, section_idx, visible }) => {
 						required
 					/>
 
-					<label>
-						<b>Img</b>
-					</label>
-					<Input
-						type="file"
-						onChange={(e) => {
-							console.log(e.target.files[0]);
-							setImg(e.target.files[0]);
-						}}
-					/>
-
-					<ActionBtn darktheme={true} onClick={(e) => submitTask(e)}>
-						Submit
-					</ActionBtn>
+					<ActionBtn onClick={(e) => submitTask(e)}>Submit</ActionBtn>
 				</FormContainer>
 			</form>
 		</div>

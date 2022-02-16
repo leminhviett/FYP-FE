@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import ActionBtn from "../ActionBtn";
 import AddTaskTopic from "../Form/MyDevComp/AddTaskTopic";
 import AddSectionTopic from "../Form/MyDevComp/AddSectionTopic";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import { ContentBannerContainer, ContentContainer, ContentBannerImg } from "./components";
 import { SplitContainer } from "../Form/MyDevComp/components";
+import ReactHtmlParser from "react-html-parser";
 
 const TopicDev = ({}) => {
 	const [target_page, set_target_page] = useState();
@@ -18,6 +19,10 @@ const TopicDev = ({}) => {
 	var temp = location.pathname.split("/");
 	var id = temp[temp.length - 1];
 	console.log(id);
+
+	var history = useHistory();
+	var temp = location.pathname.split("/");
+	var id = temp[temp.length - 1];
 
 	useEffect(() => {
 		api.get(`/topic?topic_id=${id}`, {
@@ -31,9 +36,9 @@ const TopicDev = ({}) => {
 				console.log(err);
 			});
 
-		// var temp = document.body.style;
-		// document.body.style = "background:#fffdfa";
-		// return () => (document.body.style = temp);
+		var temp = document.body.style;
+		document.body.style = "background:#fffdfa";
+		return () => (document.body.style = temp);
 	}, []);
 
 	if (!target_page) return <></>;
@@ -45,9 +50,7 @@ const TopicDev = ({}) => {
 					<div style={{ "text-indent": "20px" }} key={idx}>
 						<h3>Task {idx + 1}</h3>
 						<div style={{ "text-indent": "30px" }} key={idx}>
-							<p>
-								<b>Description</b>: {ele.desc}
-							</p>
+							{ReactHtmlParser(ele.desc)}
 							<p>
 								<b>Question</b>: {ele.ques}
 							</p>
@@ -63,7 +66,7 @@ const TopicDev = ({}) => {
 			<>
 				<div>
 					{sections.map((ele, idx) => (
-						<div key={idx}>
+						<ContentContainer key={idx}>
 							<div style={{ "text-indent": "10px" }}>
 								<div
 									style={{
@@ -77,7 +80,12 @@ const TopicDev = ({}) => {
 									</h3>
 									<ActionBtn
 										onClick={() => {
-											setTaskForm(!taskForm);
+											setSectionForm(false);
+
+											if (sectionIdx == idx || sectionIdx == "") {
+												setTaskForm(!taskForm);
+											}
+
 											set_sectionIdx(idx);
 										}}
 									>
@@ -87,63 +95,95 @@ const TopicDev = ({}) => {
 
 								<div>{tasks(ele.tasks)}</div>
 							</div>
-						</div>
+						</ContentContainer>
 					))}
 				</div>
 			</>
 		);
 	};
+	var form_style = {
+		backgroundColor: "white",
+		color: "black",
+		borderStyle: "groove",
+		borderColor: "#2a364a",
+		borderWidth: "thin",
+	};
+
+	const delTopic = () => {
+		var metadata = {
+			data: { topic_id: id },
+			headers: { bearer_token: localStorage.getItem("token") },
+		};
+
+		api.delete("/topic", metadata)
+			.then((response) => {
+				alert(response.data.message);
+				history.push("/dev/challenges");
+				history.go();
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	return (
-		<SplitContainer>
-			<div style={{ flex: "40%" }}>
-				<ContentBannerContainer>
-					<ContentBannerImg
-						src={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}
-					></ContentBannerImg>
-				</ContentBannerContainer>
-				<h1>Topic: {target_page.topic_name}</h1>
+		<>
+			<SplitContainer>
+				<div style={{ flex: "40%" }}>
+					<ContentBannerContainer>
+						<ContentBannerImg
+							src={`${process.env.REACT_APP_SERVER_URL}/${target_page.banner_img}`}
+						></ContentBannerImg>
+					</ContentBannerContainer>
 
-				<ContentContainer>
-					<h2>About</h2>
-					<p>
-						<b>Desc</b>: {target_page.topic_desc}
-					</p>
-					<p>
-						<b>Author</b>: {target_page.author_name}
-					</p>
-				</ContentContainer>
+					<ContentContainer>
+						<div
+							style={{
+								display: "flex",
+								flexDirection: "row",
+								justifyContent: "space-between",
+							}}
+						>
+							<h1>Topic: {target_page.topic_name}</h1>
+							<ActionBtn
+								onClick={() => {
+									setSectionForm(!sectionForm);
+									setTaskForm(false);
+								}}
+							>
+								Append section
+							</ActionBtn>
+						</div>
 
-				<ContentContainer>
-					<div
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							justifyContent: "space-between",
-						}}
-					>
-						<h2>Sections</h2>
-						<ActionBtn onClick={() => setSectionForm(!sectionForm)}>
-							Append section
-						</ActionBtn>
-					</div>
+						<p>
+							<b>Author</b>: {target_page.author_name}
+						</p>
+						{ReactHtmlParser(target_page.topic_desc)}
+					</ContentContainer>
 
 					{sections(target_page.sections)}
-				</ContentContainer>
-			</div>
-			<div
-				style={{
-					flex: "30%",
-					margin: "100px",
-					display: "flex",
-					justifyContent: "center",
-					flexDirection: "column",
-				}}
-			>
-				<AddSectionTopic topic_id={id} visible={sectionForm} />
-				<AddTaskTopic visible={taskForm} section_idx={sectionIdx} topic_id={id} />
-			</div>
-		</SplitContainer>
+				</div>
+				<div
+					style={{
+						flex: "30%",
+						margin: "100px",
+						display: "flex",
+						justifyContent: "center",
+						flexDirection: "column",
+					}}
+				>
+					<AddSectionTopic topic_id={id} visible={sectionForm} form_style={form_style} />
+					<AddTaskTopic
+						visible={taskForm}
+						section_idx={sectionIdx}
+						form_style={form_style}
+					/>
+				</div>
+			</SplitContainer>
+			<ActionBtn onClick={delTopic} chall_id={id}>
+				Delete
+			</ActionBtn>
+		</>
 	);
 };
 

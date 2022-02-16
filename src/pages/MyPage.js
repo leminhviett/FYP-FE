@@ -54,17 +54,20 @@ const MyPage = () => {
 				<h3>Continue your learning</h3>
 
 				<CardGridContainer>
-					{content.map((ele) => (
-						<Card
-							name={ele.topic_name}
-							desc={ele.topic_desc}
-							imgSrc={`${process.env.REACT_APP_SERVER_URL}/${ele.banner_img}`}
-							key={ele._id}
-							path={`/topic/${ele._id}`}
-							challenge_id={ele._id}
-							card_action="Learn"
-						/>
-					))}
+					{content.map((ele) => {
+						if (!ele) return;
+						return (
+							<Card
+								name={ele.topic_name}
+								desc={ele.topic_desc}
+								imgSrc={`${process.env.REACT_APP_SERVER_URL}/${ele.banner_img}`}
+								key={ele._id}
+								path={`/topic/${ele._id}`}
+								challenge_id={ele._id}
+								card_action="Learn"
+							/>
+						);
+					})}
 				</CardGridContainer>
 
 				<ActionBtn

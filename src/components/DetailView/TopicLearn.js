@@ -117,7 +117,7 @@ const TopicLearn = () => {
 		return (
 			<>
 				<h3>Task {task_idx + 1}</h3>
-				<p>{task.desc}</p>
+				{ReactHtmlParser(task.desc)}
 				<p>
 					<b>Question:</b> {task.ques}
 				</p>

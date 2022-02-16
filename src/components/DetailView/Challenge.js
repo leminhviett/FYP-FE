@@ -3,6 +3,7 @@ import { api } from "../../App";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ContentBannerContainer, ContentContainer, ContentBannerImg } from "./components";
+import ReactHtmlParser from "react-html-parser";
 
 const Challenge = () => {
 	var location = useLocation();
@@ -20,6 +21,10 @@ const Challenge = () => {
 			.catch((err) => {
 				console.log(err);
 			});
+
+		var temp = document.body.style;
+		document.body.style = "background:#fffdfa";
+		return () => (document.body.style = temp);
 	}, []);
 
 	if (!target_page) return <></>;
@@ -31,11 +36,11 @@ const Challenge = () => {
 					src={`${process.env.REACT_APP_SERVER_URL}/${target_page.img_loc}`}
 				></ContentBannerImg>
 			</ContentBannerContainer>
-			<h1>Challenge: {target_page.challenge_name}</h1>
 
 			<ContentContainer>
-				<h2>About</h2>
-				<p>Desc: {target_page.challenge_desc}</p>
+				<h1>Challenge: {target_page.challenge_name}</h1>
+
+				{ReactHtmlParser(target_page.challenge_desc)}
 				<p>Author: {target_page.author_name}</p>
 			</ContentContainer>
 
@@ -54,7 +59,7 @@ const Challenge = () => {
 				{target_page.tasks.map((ele, idx) => (
 					<div style={{ "text-indent": "20px" }}>
 						<h3>
-							Task {idx}: {ele.caption}
+							Task {idx + 1}: {ele.caption}
 						</h3>
 						<p>Screenshot: </p>
 						<img
