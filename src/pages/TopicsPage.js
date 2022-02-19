@@ -45,21 +45,21 @@ const TopicsPage = () => {
 				<Switch>
 					<Route exact path={path}>
 						<h1>Topics</h1>
-						<div
-							style={{
-								display: "flex",
-								flexDirection: "column",
-								justifyContent: "flex-start",
-							}}
-						>
+						<div>
 							<div>
 								<h2>Featured Topics</h2>
-								<div>
+								<div
+									style={{
+										display: "flex",
+										flexDirection: "column",
+										justifyContent: "flex-start",
+									}}
+								>
 									<Card
-										name={"SQL Injection"}
+										name={"Man In The Middle Attack (MITM)"}
 										card_action="View"
-										imgSrc={`${process.env.REACT_APP_SERVER_URL}/img/SQL Injection_64633bd2-7346-4e63-b05a-28604ddadc53.png`}
-										path={`${path}/view/featured/61fddf54b8c48f849c7e1e27`}
+										imgSrc={`${process.env.REACT_APP_SERVER_URL}/img/Man In The Middle Attack (MITM)_f1f95b0e-9339-4880-b705-425de0da8b98.png`}
+										path={`${path}/view/featured/62109fbcd71c0cc38802de58`}
 									/>
 								</div>
 							</div>

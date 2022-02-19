@@ -5,7 +5,7 @@ export const Content = styled.div`
 	padding: 20px 15px;
 	margin: 20px 15px;
 	width: 75%;
-	max-width: 450px;
+	max-width: 350px;
 	max-height: 500px;
 	display: flex;
 	justify-content: space-between;

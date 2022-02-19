@@ -112,7 +112,9 @@ const TopicLearn = () => {
 				.catch((err) => {
 					alert("Wrong answer");
 				});
-		};
+		};						<p>
+							<b>Author</b>: {target_page.author_name}
+						</p>
 
 		return (
 			<>

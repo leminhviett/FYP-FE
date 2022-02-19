@@ -160,6 +160,9 @@ const TopicDev = ({}) => {
 						<p>
 							<b>Author</b>: {target_page.author_name}
 						</p>
+						<p>
+							<b>Runnable Image</b>: {target_page.img_repo}
+						</p>
 						{ReactHtmlParser(target_page.topic_desc)}
 					</ContentContainer>
 

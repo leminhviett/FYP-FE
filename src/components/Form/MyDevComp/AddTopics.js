@@ -58,7 +58,7 @@ const AddTopics = () => {
 					</label>
 					<Input
 						type="text"
-						placeholder="Enter username"
+						placeholder="Enter topic name"
 						value={name}
 						onChange={(e) => {
 							setName(e.target.value);
