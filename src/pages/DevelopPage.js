@@ -92,18 +92,22 @@ const DevelopPage = () => {
 							</RoutingBtn>
 
 							<CardGridContainer>
-								{challenges.map((ele) => (
-									<Card
-										name={ele.challenge_name}
-										desc={ele.challenge_desc}
-										imgSrc={`${BASE_URL}/${ele.img_loc}`}
-										key={ele._id}
-										path={`${path}/challenge/${ele._id}`}
-										challenge_id={ele._id}
-										card_action="View"
-										content={ele}
-									/>
-								))}
+								{challenges.map((ele) => {
+									if (ele != null)
+										return (
+											<Card
+												name={ele.challenge_name}
+												desc={ele.challenge_desc}
+												imgSrc={`${BASE_URL}/${ele.img_loc}`}
+												key={ele._id}
+												path={`${path}/challenge/${ele._id}`}
+												challenge_id={ele._id}
+												card_action="View"
+												content={ele}
+											/>
+										);
+									return;
+								})}
 							</CardGridContainer>
 						</div>
 					</Route>
@@ -117,18 +121,22 @@ const DevelopPage = () => {
 							</RoutingBtn>
 
 							<CardGridContainer>
-								{topics.map((ele) => (
-									<Card
-										name={ele.topic_name}
-										desc={ele.topic_desc}
-										imgSrc={`${BASE_URL}/${ele.banner_img}`}
-										key={ele._id}
-										path={`${path}/topic/${ele._id}`}
-										challenge_id={ele._id}
-										card_action="View"
-										content={ele}
-									/>
-								))}
+								{topics.map((ele) => {
+									if (ele != null)
+										return (
+											<Card
+												name={ele.topic_name}
+												desc={ele.topic_desc}
+												imgSrc={`${BASE_URL}/${ele.banner_img}`}
+												key={ele._id}
+												path={`${path}/topic/${ele._id}`}
+												challenge_id={ele._id}
+												card_action="View"
+												content={ele}
+											/>
+										);
+									return;
+								})}
 							</CardGridContainer>
 						</div>
 					</Route>
@@ -173,7 +181,6 @@ const MyChallenge = () => {
 
 	return (
 		<>
-
 			<SplitContainer>
 				<Challenge style={{ flex: "50%" }} />
 				<AddTaskChallenge style={{ flex: "50%", margin: "20px" }} id={id} />

@@ -19,9 +19,8 @@ const AddTaskChallenge = ({ id }) => {
 			})
 			.catch((err) => console.log(err));
 	};
+
 	const submitTaskChallenge = async (e) => {
-		e.preventDefault();
-		console.log(id);
 		if (img) {
 			var reader = new FileReader();
 			reader.readAsDataURL(img);
@@ -32,13 +31,12 @@ const AddTaskChallenge = ({ id }) => {
 				};
 				call_api(data);
 			};
+		} else {
+			call_api({
+				challenge_id: id,
+				task_data: { caption: caption },
+			});
 		}
-		call_api({
-			challenge_id: id,
-			task_data: { caption: caption },
-		});
-
-		// e.preventDefault();
 	};
 
 	return (
